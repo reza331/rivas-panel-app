@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
+import { ThemeProvider } from "next-themes";
+import SideBar from "@/components/side-bar";
+import ReactQueryprovider from "@/components/react-queryprovider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +26,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="h-dvh w-dvw flex bg-A text-text-A">
+        <ReactQueryprovider>
+          <ThemeProvider attribute="class">
+            <SideBar />
+            <div className="overflow-y-auto h-full w-full">
+              {children}
+            </div>
+          </ThemeProvider>
+        </ReactQueryprovider>
+      </body>
     </html>
   );
 }
