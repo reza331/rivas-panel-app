@@ -1,9 +1,17 @@
 'use client'
 import { useAuthStoreUser } from "@/stores/auth-store"
+import { redirect } from "next/navigation"
+import { useEffect } from "react"
 
 export default function Profile() {
 
     const user = useAuthStoreUser()
+
+    useEffect(() => {
+        if (!user) {
+            redirect('/login')
+        }
+    }, [user])
 
     return (
         <div className="flex gap-2 items-center mt-10">

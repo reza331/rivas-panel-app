@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import SideBar from "@/components/side-bar";
 import ReactQueryprovider from "@/components/react-queryprovider";
+import { useAuthStoreUser } from "@/stores/auth-store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+
   return (
     <html
       lang="en"
